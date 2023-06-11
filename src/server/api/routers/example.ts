@@ -4,20 +4,51 @@ import {
   publicProcedure,
   protectedProcedure,
 } from "@/server/api/trpc";
+import { prisma } from "@/server/db";
+
 
 export const exampleRouter = createTRPCRouter({
   hello: publicProcedure
     .input(z.object({ text: z.string() }))
     .query(({ input }) => {
       return {
-        greeting: `Hello ${input.text}`,
+        greeting: `Hello world ${input.text}`,
       };
     }),
 
-  getAll: publicProcedure.query(({ ctx }) => {
-    return ctx.prisma.example.findMany();
+  double : publicProcedure
+  .input(z.number())
+  .query(({input}) => {
+    return {
+      result : input * 2
+    }
   }),
 
+ 
+  timesThree : publicProcedure
+  .input(z.number())
+  .mutation(({input}) => {
+    return {
+      result : input * 3
+    }
+  }),
+
+  createExample : publicProcedure
+  .input(z.string())
+  .mutation(({input}) => {
+    return prisma.example.create({
+      data : {
+        text : input
+      }
+    })
+  }),
+
+  getAllExamples : publicProcedure
+  .query(() => {
+    return prisma.example.findMany()
+  }),
+
+    
   getSecretMessage: protectedProcedure.query(() => {
     return "you can now see this secret message!";
   }),
