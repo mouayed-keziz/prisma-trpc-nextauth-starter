@@ -7,6 +7,7 @@ import {
 } from "next-auth";
 import DiscordProvider from "next-auth/providers/discord";
 import GoogleProvider from "next-auth/providers/google";
+import GithubProvider from "next-auth/providers/github";
 
 import { env } from "@/env.mjs";
 import { prisma } from "@/server/db";
@@ -56,7 +57,11 @@ export const authOptions: NextAuthOptions = {
       GoogleProvider({
         clientId: env.GOOGLE_CLIENT_ID,
         clientSecret: env.GOOGLE_CLIENT_SECRET,
-      })
+      }),
+      GithubProvider({
+        clientId: env.GITHUB_CLIENT_ID,
+        clientSecret: env.GITHUB_CLIENT_SECRET,
+      }),
     
     
     /**

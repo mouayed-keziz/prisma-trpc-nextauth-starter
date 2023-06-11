@@ -2,28 +2,31 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { type MouseEventHandler } from "react";
 import { type Session } from "next-auth";
 
-export default function Google() {
+export default function Discord() {
     const data = useSession();
     return (
-        <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
-            <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-                <h1 className="text-center text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-                    TEST <span className="text-[hsl(280,100%,70%)]">GOOGLE</span> AUTH
-                </h1>
 
-                <div className="h-6" />
+        <>
+            <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
+                <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
+                    <h1 className="text-center text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
+                        TEST <span className="text-[hsl(280,100%,70%)]">GITHUB</span> AUTH
+                    </h1>
 
-                {data.status === "loading" && <Loading />}
-                {data.status === "authenticated" && <Authenticated user={data.data.user} />}
-                {data.status === "unauthenticated" && <Unauthenticated />}
+                    <div className="h-6" />
 
-                <div className="h-6" />
+                    {data.status === "loading" && <Loading />}
+                    {data.status === "authenticated" && <Authenticated user={data.data.user} />}
+                    {data.status === "unauthenticated" && <Unauthenticated />}
 
-            </div>
-        </main>
+                    <div className="h-6" />
+
+                </div>
+            </main>
+
+        </>
     )
 }
-
 
 
 function Loading() {
@@ -70,7 +73,7 @@ function Authenticated({ user }: AuthenticatedProps) {
 function Unauthenticated() {
     const Handeler: MouseEventHandler<HTMLButtonElement> = (e) => {
         e.preventDefault();
-        void signIn();
+        void signIn("");
     }
     return (
         <>

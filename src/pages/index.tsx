@@ -28,7 +28,8 @@ export default function HomePage() {
                         <Link className={buttonClass} href="/auth/register">credentials/register</Link>
                         <Link className={buttonClass} href="/auth/discord">providers/discord</Link>
                         <Link className={buttonClass} href="/auth/google">providers/google</Link>
-                        <Link className={buttonClass} href="/auth/providers">providers</Link>
+                        <Link className={buttonClass} href="/auth/github">providers/github</Link>
+                        <Link className={buttonClass} href="/api/auth/signin">providers</Link>
                     </div>
                 </div>
             </main>
