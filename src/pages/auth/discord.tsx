@@ -1,10 +1,9 @@
 import { signIn, signOut, useSession } from "next-auth/react";
-import Image from "next/image";
-import { MouseEventHandler } from "react";
+import { type MouseEventHandler } from "react";
+import { type Session } from "next-auth";
 
 export default function Discord() {
     const data = useSession();
-
     return (
 
         <>
@@ -36,18 +35,33 @@ function Loading() {
     );
 }
 
-function Authenticated({ user }) {
+interface AuthenticatedProps {
+    user: Session["user"];
+}
+function Authenticated({ user }: AuthenticatedProps) {
     const Handeler: MouseEventHandler<HTMLButtonElement> = (e) => {
         e.preventDefault();
         void signOut();
     }
     return (
         <>
-            <p className="text-white">authenticates</p>
-            <p className="text-white" >email : {user.email}</p>
-            <p className="text-white" >name : {user.name}</p>
-            <p className="text-white" >id : {user.id}</p>
-            <img className="w-10 h-10 rounded-full" src={user.image} alt="Rounded avatar" />
+            {user && (
+                <div className="flex-col items-center text-center justify-center">
+                    <b className="text-white">authenticates</b>
+                    <p className="text-white" ><b>email :</b> {user.email}</p>
+                    <p className="text-white" ><b>name :</b> {user.name}</p>
+                    <p className="text-white" ><b>id :</b> {user.id}</p>
+                    {user.image && (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                            className="w-16 h-16 rounded-full"
+                            src={user.image}
+                            alt="Rounded avatar"
+                        />
+                    )}
+                </div>
+            )}
+
             <button
                 className="ml-2 py-2 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-purple-500 text-white hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"
                 onClick={Handeler}
