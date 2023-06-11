@@ -12,7 +12,7 @@ export const exampleRouter = createTRPCRouter({
     .input(z.object({ text: z.string() }))
     .query(({ input }) => {
       return {
-        greeting: `Hello world ${input.text}`,
+        greeting: `this is a ${input.text}`,
       };
     }),
 
