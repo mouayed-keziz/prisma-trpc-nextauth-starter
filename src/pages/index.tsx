@@ -24,8 +24,11 @@ export default function HomePage() {
 
                     <Divider text="AUTH" />
                     <div className="flex justify-center gap-4 text-white">
-                        <Link className={buttonClass} href="/trpc/display">credentials/login</Link>
-                        <Link className={buttonClass} href="/trpc/display">credentials/register</Link>
+                        <Link className={buttonClass} href="/auth/login">credentials/login</Link>
+                        <Link className={buttonClass} href="/auth/register">credentials/register</Link>
+                        <Link className={buttonClass} href="/auth/discord">providers/discord</Link>
+                        <Link className={buttonClass} href="/auth/google">providers/google</Link>
+                        <Link className={buttonClass} href="/auth/providers">providers</Link>
                     </div>
                 </div>
             </main>
